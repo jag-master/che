@@ -1,0 +1,8 @@
+.slow-image {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slow-image.fade-in {
+  opacity: 1;
+}
