@@ -1,0 +1,56 @@
+.wrap {
+  position: relative;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fingerprint {
+  width: 600px;
+  z-index: 9;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.success {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  bottom: 100px;
+  right: 0;
+  width: 25px;
+  opacity: 0;
+  color: #27ae60;
+  transition: opacity 0.2s ease-out;
+}
+.success.active {
+  opacity: 1;
+}
+
+.fingerprint.clone {
+  margin: auto;
+  width: 600px;
+  z-index: 8;
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: opacity 0.75s ease-out;
+  opacity: 1;
+}
+.fingerprint.clone path {
+  transition: fill 0.2s ease-out;
+}
+.fingerprint.clone.active {
+  opacity: 0;
+}
+.fingerprint.clone.hover path {
+  fill: #dbdbdb;
+}
+.fingerprint.clone svg {
+  fill: #fafafa;
+}

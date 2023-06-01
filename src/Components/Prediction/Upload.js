@@ -3,12 +3,14 @@ import axios from "axios";
 import ResultUI from "./Result";
 import "./Card.css";
 import SignInUI from "./SignIn";
+import SignatureUI from "./Signature";
 
-export default function Alzehimer() {
+export default function SignatureUIComp() {
   const [capturedImage, setCapturedImage] = React.useState(null);
   const [result, setResult] = React.useState(-1);
   const [loading, setLoading] = React.useState(false);
   const [signinLoad, setSignInLoad] = React.useState(false);
+  const [signatureLoad, setSignatureLoad] = React.useState(false);
 
   const CameraCapture2 = async (event) => {
     setLoading(true);
@@ -101,7 +103,8 @@ export default function Alzehimer() {
               </label>
 
               <a
-                href="#"
+                href="https://support.microsoft.com/en-us/topic/what-is-multifactor-authentication-e5e39437-121c-be60-d123-eda06bddf661"
+                target="_blank"
                 className="text-sm font-semibold leading-6 text-white"
               >
                 Learn more <span aria-hidden="true">→</span>
@@ -118,7 +121,7 @@ export default function Alzehimer() {
                   5355 1234 xxxx xxxx
                 </label>
                 <label class="name" for="cardHolder">
-                  Chetan Reddy
+                  CARDHOLDER NAME
                 </label>
                 <label class="expiry" for="expiryMonth">
                   03/27
@@ -171,24 +174,22 @@ export default function Alzehimer() {
         </div>
         {signinLoad && (
           <div className="relative isolate overflow-hidden bg-gray-900 shadow-2xl">
-            <SignInUI />
+            <SignInUI
+              nextComp={() => {
+                setSignatureLoad(true);
+
+                setTimeout(() => {
+                  window.scrollTo({
+                    top: window.pageYOffset + 700,
+                    behavior: "smooth",
+                  });
+                }, 1000);
+              }}
+            />
           </div>
         )}
 
-        {capturedImage && result != -1 ? (
-          <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl  sm:px-16 md:pt-0 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
-            <ResultUI capturedImage={capturedImage} result={result} />
-          </div>
-        ) : null}
-        {capturedImage && result != -1 ? (
-          <div
-            style={{
-              backgroundColor: "#111827",
-              width: "100%",
-              height: "50px",
-            }}
-          ></div>
-        ) : null}
+        {signatureLoad && <SignatureUI />}
       </div>
     </div>
   );
